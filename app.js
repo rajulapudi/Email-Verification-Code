@@ -85,6 +85,13 @@ app.get('/verify/:token', (req, res) => {
 	);
 });
 
+app.delete('/:id', (req, res) => {
+	User.remove({ token: req.params.id }, err => {
+		if (err) throw err;
+		res.send('User removed successfully');
+	});
+});
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	next(createError(404));
